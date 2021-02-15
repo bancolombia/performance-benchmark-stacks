@@ -1,0 +1,29 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "Benchmark scenarios implemented in nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bancolombia/performance-benchmark-stacks.git"
+  },
+  "keywords": [
+    "benchmark",
+    "stack",
+    "nodejs",
+    "bancolombia"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bancolombia/performance-benchmark-stacks/issues"
+  },
+  "homepage": "https://github.com/bancolombia/performance-benchmark-stacks#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
