@@ -2,20 +2,20 @@ AWSTemplateFormatVersion: "2021-02-16"
 Description: Template for automated stacks tests
 Parameters:
   InstanceSecurityGroup:
-    Description: An environment name that is prefixed to resource names
+    Description: Security group for instances creations
     Type: String
     
   AMI:
-    Description: An environment name that is prefixed to resource names
+    Description: Image id for the EC2 instances
     Type: String
     
   InstanceType:
-    Description: An environment name that is prefixed to resource names
+    Description: This values corresponds to the instance type e.g t2.micro
     Type: String
 
     
   KeyName:
-    Description: An environment name that is prefixed to resource names
+    Description: Key name for the resources of the current cloud formation
     Type: String
 
 Resources:

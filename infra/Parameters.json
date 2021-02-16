@@ -1,7 +1,7 @@
 [
     {
         "ParameterKey": "InstanceSecurityGroup",
-        "ParameterValue": "sg-0d65789f817d7f0c0"
+        "ParameterValue": ""
     },
     {
         "ParameterKey": "AMI",
