@@ -1,0 +1,10 @@
+{
+    "instance": "t2.micro",
+    "key": "reactive",
+    "securityGroup": "sg-00000000000000000",
+    "subnet": "subnet-00000000000000000",
+    "amiUser": "ubuntu",
+    "ami": "ami-03d315ad33b9d49c4",
+    "benchRepo": "https://github.com/bancolombia/performance-benchmark-stacks.git",
+    "perfRepo": "https://github.com/juancgalvis/distributed-performance-analyzer.git"
+}

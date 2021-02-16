@@ -1,5 +1,4 @@
 #!/bin/bash
-
 docker kill $(docker ps -q)
 cd performance-benchmark-stacks
 STACK=$1
