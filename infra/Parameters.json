@@ -1,0 +1,18 @@
+[
+    {
+        "ParameterKey": "InstanceSecurityGroup",
+        "ParameterValue": "sg-0d65789f817d7f0c0"
+    },
+    {
+        "ParameterKey": "AMI",
+        "ParameterValue": "ami-03d315ad33b9d49c4"
+    },
+    {
+        "ParameterKey": "InstanceType",
+        "ParameterValue": "t2.micro"
+    },
+    {
+        "ParameterKey": "KeyName",
+        "ParameterValue": "reactive"
+    }
+]
