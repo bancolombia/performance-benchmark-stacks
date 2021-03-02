@@ -1,9 +1,8 @@
 #!/bin/bash
 
-stacks=( "nodejs/express" "nodejs/nestjs" )
+stacks=("nodejs/express" "nodejs/nestjs")
 
-for stack in "${stacks[@]}"
-do
+for stack in "${stacks[@]}"; do
   echo "Starting $stack"
   ./start.sh "$stack" &
 done

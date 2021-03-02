@@ -161,6 +161,7 @@ cloneRepo "$perf_ip" "$perf_repo"
 startScenario() {
   local scenario=$1
 
+  runRemoteCommand "$perf_ip" "docker -v"
   # start perf test
   # replace ip
   cp "test-scenarios/$scenario.exs" ".tmp/scenarios/$stack_dash-$scenario.exs"
@@ -177,10 +178,10 @@ scenarios=("health-check")
 
 # start stack
 startStack "$app_ip" "$stack"
-waitForUrl "http://$app_ip:8080/status"
 
-for scenario in "${scenarios[@]}"
-do
+for scenario in "${scenarios[@]}"; do
+  runRemoteCommand "$app_ip" "docker restart stack"
+  waitForUrl "http://$app_ip:8080/status"
   echo "Starting $scenario on the stack $stack"
   startScenario "$scenario"
 done
