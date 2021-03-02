@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
 
+# Params
+stack=$1
+stack_dash=${stack/\//-}
+
 # Setup properties
-mkdir -p .tmp/results
-mkdir -p .tmp/scenarios
+mkdir -p .tmp/results .tmp/scenarios
+rm -rf .tmp/results/* .tmp/scenarios/*
 instance=$(jq -r '.instance' config.json)
 key=$(jq -r '.key' config.json)
 sg=$(jq -r '.securityGroup' config.json)
@@ -28,6 +32,7 @@ createInstance() {
 
   if [ "$state" != "running" ]; then
     aws ec2 run-instances --image-id "$ami" \
+      --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=benckmks-$name}]" \
       --count 1 --instance-type "$type" --key-name "$key" \
       --security-group-ids "$sg" \
       --subnet-id "$subnet" \
@@ -35,12 +40,6 @@ createInstance() {
 
     instance_id=$(jq -r '.Instances[0].InstanceId' ".tmp/$name.json")
     echo "Instance $instance_id created!" >/dev/tty
-
-    echo "Waiting for $name instance ready ..." >/dev/tty
-    aws ec2 wait instance-running --instance-ids "$instance_id"
-    sleep 10
-
-    echo "Instance $name $instance_id ready!" >/dev/tty
   fi
 
   echo "$instance_id"
@@ -132,9 +131,18 @@ startStack() {
   runRemoteCommand "$ip" "./performance-benchmark-stacks/start_stack.sh $stack"
 }
 
-#Start stacks instance
+#Start stack and performance instances
 
-app_instance=$(createInstance 'app' "$instance")
+app_instance=$(createInstance "$stack_dash-app" "$instance")
+perf_instance=$(createInstance "$stack_dash-perf" "$instance")
+
+echo "Waiting for $app_instance and $perf_instance instances ready ..."
+aws ec2 wait instance-running --instance-ids "$app_instance" "$perf_instance"
+sleep 10
+
+echo "Instances ready!"
+
+# Setup stack
 app_ip=$(getInstanceIp "$app_instance")
 
 waitInitialized "$app_ip"
@@ -142,40 +150,40 @@ runRemoteCommand "$app_ip" "docker -v"
 cloneRepo "$app_ip" "$bench_repo"
 
 #Start performance instance
-perf_instance=$(createInstance 'perf' "$instance")
+
+# Setup perf
 perf_ip=$(getInstanceIp "$perf_instance")
 
 waitInitialized "$perf_ip"
 runRemoteCommand "$perf_ip" "docker -v"
 cloneRepo "$perf_ip" "$perf_repo"
 
-# start stack
 startScenario() {
-  local stack=$1
-  local scenario=$2
-  startStack "$app_ip" "$stack"
-
-  waitForUrl "http://$app_ip:8080/status"
+  local scenario=$1
 
   # start perf test
   # replace ip
-  cp "test-scenarios/$scenario.exs" ".tmp/scenarios/$scenario.exs"
-  sed -i "s/ip/$app_ip/g" ".tmp/scenarios/$scenario.exs"
+  cp "test-scenarios/$scenario.exs" ".tmp/scenarios/$stack_dash-$scenario.exs"
+  sed -i "s/ip/$app_ip/g" ".tmp/scenarios/$stack_dash-$scenario.exs"
   # copying scenario
-  copyRemote "$perf_ip" ".tmp/scenarios/$scenario.exs" "distributed-performance-analyzer/config/prod.exs"
+  copyRemote "$perf_ip" ".tmp/scenarios/$stack_dash-$scenario.exs" "distributed-performance-analyzer/config/prod.exs"
   # run performance tests
   runRemoteCommand "$perf_ip" "docker build -t dpa distributed-performance-analyzer && docker run -v \$(pwd)/:/app/result/ dpa"
   # download results
-  copyFromRemote "$perf_ip" "result.csv" ".tmp/results/$scenario-${stack//[\/]/-}-result.csv"
+  copyFromRemote "$perf_ip" "result.csv" ".tmp/results/$scenario-$stack_dash-result.csv"
 }
 
-scenario="health-check"
-array=( "nodejs/express" "nodejs/nestjs" )
-for stack in "${array[@]}"
-do
-  startScenario "$stack" "$scenario"
-done
+scenarios=("health-check")
 
+# start stack
+startStack "$app_ip" "$stack"
+waitForUrl "http://$app_ip:8080/status"
+
+for scenario in "${scenarios[@]}"
+do
+  echo "Starting $scenario on the stack $stack"
+  startScenario "$scenario"
+done
 echo "Terminating instances ..."
 aws ec2 terminate-instances --instance-ids "$app_instance" "$perf_instance"
 aws ec2 wait instance-terminated --instance-ids "$app_instance" "$perf_instance"
