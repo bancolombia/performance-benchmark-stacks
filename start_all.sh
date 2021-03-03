@@ -1,6 +1,6 @@
 #!/bin/bash
 
-stacks=("nodejs/express" "nodejs/nestjs")
+stacks=("nodejs/express" "nodejs/nestjs" "java/spring-boot-tomcat" "java/spring-boot-tomcat")
 
 for stack in "${stacks[@]}"; do
   echo "Starting $stack"

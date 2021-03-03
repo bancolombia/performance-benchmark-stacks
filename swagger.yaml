@@ -1,0 +1,41 @@
+openapi: 3.0.1
+info:
+  title: Performance Benchmark Stacks
+  description: Base capabilities for performance scenarios, each operation should be implemented in each stack
+  version: 1.0.0
+tags:
+  - name: basic
+    description: Basic operations without external resources, only cpu processing
+paths:
+  /status:
+    get:
+      tags:
+        - basic
+      summary: Simple rest api without interactions or processing
+      operationId: status
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+        500:
+          description: Error response could be 4xx or 5xx status code
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Status:
+      required:
+        - status
+      type: object
+      properties:
+        status:
+          type: string
+          example: OK
+    Error:
+      description: No defined body response is required
+      type: object
