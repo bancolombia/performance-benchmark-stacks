@@ -1,6 +1,6 @@
 #!/bin/bash
 
-stacks=("nodejs/express" "nodejs/nestjs" "java/spring-boot-tomcat" "java/spring-boot-webflux")
+stacks=("nodejs/express" "nodejs/nestjs" "java/spring-boot-tomcat" "java/spring-boot-webflux" "elixir/plug-cowboy")
 scenarios=("health-check")
 
 for stack in "${stacks[@]}"; do
