@@ -4,6 +4,8 @@ set -e
 # Params
 stack=$1
 stack_dash=${stack/\//-}
+scenarios=("$@")
+unset "scenarios[0]"
 
 # Setup properties
 mkdir -p .tmp/results .tmp/scenarios
@@ -173,8 +175,6 @@ startScenario() {
   # download results
   copyFromRemote "$perf_ip" "result.csv" ".tmp/results/$scenario|$stack_dash.csv"
 }
-
-scenarios=("health-check")
 
 # start stack
 startStack "$app_ip" "$stack"
