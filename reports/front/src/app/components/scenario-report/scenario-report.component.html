@@ -1,0 +1,5 @@
+<h1>{{scenario}}</h1>
+<div *ngFor="let metric of metrics()">
+  <app-scenario-chart [scenario]="scenario" [metric]="metric" [data]="data"></app-scenario-chart>
+</div>
+

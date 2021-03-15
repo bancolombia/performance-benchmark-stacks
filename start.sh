@@ -32,7 +32,7 @@ createInstance() {
 
   if [ "$state" != "running" ]; then
     aws ec2 run-instances --image-id "$ami" \
-      --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=benckmks-$name}]" \
+      --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=benchkmks-$name}]" \
       --count 1 --instance-type "$type" --key-name "$key" \
       --security-group-ids "$sg" \
       --subnet-id "$subnet" \
@@ -171,7 +171,7 @@ startScenario() {
   # run performance tests
   runRemoteCommand "$perf_ip" "docker build -t dpa distributed-performance-analyzer && docker run -v \$(pwd)/:/app/result/ dpa"
   # download results
-  copyFromRemote "$perf_ip" "result.csv" ".tmp/results/$scenario-$stack_dash-result.csv"
+  copyFromRemote "$perf_ip" "result.csv" ".tmp/results/$scenario|$stack_dash.csv"
 }
 
 scenarios=("health-check")
