@@ -34,7 +34,7 @@ createInstance() {
 
   if [ "$state" != "running" ]; then
     aws ec2 run-instances --image-id "$ami" \
-      --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=benchkmks-$name}]" \
+      --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=benchmks-$name}]" \
       --count 1 --instance-type "$type" --key-name "$key" \
       --security-group-ids "$sg" \
       --subnet-id "$subnet" \
