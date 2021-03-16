@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 config :perf_analizer,
        url: "http://ip:8080/status",

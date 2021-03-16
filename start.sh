@@ -17,7 +17,7 @@ subnet=$(jq -r '.subnet' config.json)
 ami=$(jq -r '.ami' config.json)
 ami_user=$(jq -r '.amiUser' config.json)
 bench_repo=$(jq -r '.benchRepo' config.json)
-perf_repo=$(jq -r '.perfRepo' config.json)
+perf_image=$(jq -r '.perfImage' config.json)
 
 createInstance() {
   local name=$1
@@ -158,7 +158,6 @@ perf_ip=$(getInstanceIp "$perf_instance")
 
 waitInitialized "$perf_ip"
 runRemoteCommand "$perf_ip" "docker -v"
-cloneRepo "$perf_ip" "$perf_repo"
 
 startScenario() {
   local scenario=$1
@@ -169,9 +168,9 @@ startScenario() {
   cp "test-scenarios/$scenario.exs" ".tmp/scenarios/$stack_dash-$scenario.exs"
   sed -i "s/ip/$app_ip/g" ".tmp/scenarios/$stack_dash-$scenario.exs"
   # copying scenario
-  copyRemote "$perf_ip" ".tmp/scenarios/$stack_dash-$scenario.exs" "distributed-performance-analyzer/config/prod.exs"
+  copyRemote "$perf_ip" ".tmp/scenarios/$stack_dash-$scenario.exs" "performance.exs"
   # run performance tests
-  runRemoteCommand "$perf_ip" "docker build -t dpa distributed-performance-analyzer && docker run -v \$(pwd)/:/app/result/ dpa"
+  runRemoteCommand "$perf_ip" "docker run -v \$(pwd)/:/app/config $perf_image"
   # download results
   copyFromRemote "$perf_ip" "result.csv" ".tmp/results/$scenario|$stack_dash.csv"
 }

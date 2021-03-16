@@ -6,5 +6,5 @@
     "amiUser": "ubuntu",
     "ami": "ami-03d315ad33b9d49c4",
     "benchRepo": "https://github.com/bancolombia/performance-benchmark-stacks.git",
-    "perfRepo": "https://github.com/juancgalvis/distributed-performance-analyzer.git"
+    "perfImage": "bancolombia/distributed-performance-analyzer:0.2.0"
 }
