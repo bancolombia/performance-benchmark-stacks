@@ -45,7 +45,7 @@ To run this project you need:
     "amiUser": "ubuntu", # default user of the ami
     "ami": "ami-03d315ad33b9d49c4", # ami id, if you want to change it, you should change the docker installation file, located in the infra folder
     "benchRepo": "https://github.com/bancolombia/performance-benchmark-stacks.git",
-    "perfRepo": "https://github.com/juancgalvis/distributed-performance-analyzer.git"
+    "perfImage": "bancolombia/distributed-performance-analyzer:0.2.1"
    }
    ```
 
@@ -54,6 +54,8 @@ To run this project you need:
 In the start_all.sh script you can change the scenarios and stacks array what you want to run, this script will run the
 start.sh script with each stack and list of desired scenarios. The start.sh script will create two instances, first one
 will be the instance where the stack will be deployed, the second one will be the performance instance.
+
+The performance tool is the [distributed performance analyzer](https://github.com/bancolombia/distributed-performance-analyzer) project, also available as docker image at [dockerhub](https://hub.docker.com/repository/docker/bancolombia/distributed-performance-analyzer).
 
 Then it will run every scenario on the stack and will download the results in the .tmp/results folder.
 
