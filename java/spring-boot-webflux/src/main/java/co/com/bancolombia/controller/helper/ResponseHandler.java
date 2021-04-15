@@ -1,4 +1,4 @@
-package co.com.bancolombia.controller;
+package co.com.bancolombia.controller.helper;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
