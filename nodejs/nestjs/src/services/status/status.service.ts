@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Status } from './status';
+import { Status } from '../../models/status';
 
 @Injectable()
-export class AppService {
+export class StatusService {
   getStatus(): Status {
     return new Status('UP');
   }
