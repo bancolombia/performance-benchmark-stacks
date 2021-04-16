@@ -2,7 +2,7 @@ FROM gradle:jdk11-openj9 as builder
 WORKDIR /app
 COPY spring-boot-webflux spring-boot-webflux
 COPY commons commons
-RUN cd spring-boot-webflux && gradle bootJar
+RUN cd spring-boot-webflux && ./gradlew bootJar
 
 FROM adoptopenjdk/openjdk11-openj9:x86_64-alpine-jre-11.0.10_9_openj9-0.24.0
 EXPOSE 8080
