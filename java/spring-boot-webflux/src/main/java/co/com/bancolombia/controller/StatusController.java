@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-import static co.com.bancolombia.controller.ResponseHandler.encapsulateResponse;
+import static co.com.bancolombia.controller.helper.ResponseHandler.encapsulateResponse;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping(value = "/status", produces = MediaType.APPLICATION_JSON_VALUE)
-@AllArgsConstructor
 public class StatusController {
 
     @GetMapping()

@@ -1,4 +1,4 @@
-defmodule PlugCowboyApp.Models.Status do
+defmodule Models.Status do
   @moduledoc false
 
   defstruct [

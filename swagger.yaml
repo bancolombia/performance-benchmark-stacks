@@ -6,6 +6,8 @@ info:
 tags:
   - name: basic
     description: Basic operations without external resources, only cpu processing
+  - name: processing
+    description: Operations which only do heavy processing, every operation should implement this behaviour > should be allowed for a percentage of requests, and should run a loop for a delay time, when delay time is 0 loop should enter a single time
 paths:
   /status:
     get:
@@ -26,6 +28,58 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /hash:
+    get:
+      tags:
+        - processing
+      summary: Service that should internally generate an uuid and hash it using sha256 as hex. This task should be allowed for a percentage of requests, and should run a loop for a delay time
+      operationId: sha256
+      parameters:
+        - name: percentage
+          in: query
+          description: percentage of requests that should do processing, default 100
+        - name: delay
+          in: query
+          description: delay time to run the processing loop, default 0
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoopStatus'
+        500:
+          description: Error response could be 4xx or 5xx status code
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /crypt:
+    get:
+      tags:
+        - processing
+      summary: Service that should internally generate an uuid and encrypt it using bcrypt with 10 rounds, then should validate the clear uuid with the encrypted value.
+      operationId: sha256
+      parameters:
+        - name: percentage
+          in: query
+          description: percentage of requests that should do processing, default 100
+        - name: delay
+          in: query
+          description: delay time to run the processing loop, default 0
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoopStatus'
+        500:
+          description: Error response could be 4xx or 5xx status code
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Status:
@@ -36,6 +90,24 @@ components:
         status:
           type: string
           example: OK
+    LoopStatus:
+      required:
+        - status
+        - applied
+        - times
+      type: object
+      properties:
+        status:
+          type: string
+          example: OK
+        applied:
+          type: boolean
+          example: true
+          description: indicates if the current request has been in the percentage
+        times:
+          type: number
+          example: 1000
+          description: amount of loops executed in the delay time
     Error:
       description: No defined body response is required
       type: object
