@@ -8,8 +8,8 @@ config :perf_analizer,
          body: nil
        },
        execution: %{
-         steps: 10,
-         increment: 50,
+         steps: 15,
+         increment: 10,
          duration: 10000,
          constant_load: false
        },
