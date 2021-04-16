@@ -10,6 +10,7 @@ ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /app/commons
 COPY commons .
+RUN npm install --only=production
 WORKDIR /app/nestjs
 COPY nestjs/package*.json ./
 RUN npm install --only=production
