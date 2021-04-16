@@ -1,7 +1,7 @@
 FROM elixir:1.11.3-alpine
 RUN apk add build-base
 WORKDIR /app
-COPY . /app
+COPY plug-cowboy /app
 RUN mix local.hex --force \
     && mix local.rebar --force \
     && mix deps.get \
