@@ -17,7 +17,7 @@ public class CryptController {
     private final CryptService service;
 
     @GetMapping()
-    public LoopStatus sha256(@RequestParam(defaultValue = "100") Long delay,
+    public LoopStatus sha256(@RequestParam(defaultValue = "0") Long delay,
                              @RequestParam(defaultValue = "100") Integer percentage) {
         int times = DelayedTaskRunner.start(service::process, percentage, delay);
         return LoopStatus.builder().status("OK").applied(times > 0).times(times).build();

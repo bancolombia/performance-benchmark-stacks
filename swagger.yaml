@@ -37,10 +37,10 @@ paths:
       parameters:
         - name: percentage
           in: query
-          description: percentage of requests that should do processing
+          description: percentage of requests that should do processing, default 100
         - name: delay
           in: query
-          description: delay time to run the processing loop
+          description: delay time to run the processing loop, default 0
       responses:
         200:
           description: Successful response
@@ -63,10 +63,10 @@ paths:
       parameters:
         - name: percentage
           in: query
-          description: percentage of requests that should do processing
+          description: percentage of requests that should do processing, default 100
         - name: delay
           in: query
-          description: delay time to run the processing loop
+          description: delay time to run the processing loop, default 0
       responses:
         200:
           description: Successful response

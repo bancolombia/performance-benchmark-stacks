@@ -25,21 +25,21 @@ defmodule PlugCowboyApp.Routers.StatusRouter do
   defp handle_loop_status(conn, fun) do
     params = conn
              |> fetch_query_params()
-    percentage = get_query_int(params.query_params, "percentage")
-    delay = get_query_int(params.query_params, "delay")
+    percentage = get_query_int(params.query_params, "percentage", 100)
+    delay = get_query_int(params.query_params, "delay", 0)
     fun.(percentage, delay)
     |> send_result(conn)
   end
 
-  defp get_query_int(query_params, param) do
-    parse_int(query_params[param])
+  defp get_query_int(query_params, param, default) do
+    parse_int(query_params[param], default)
   end
 
-  defp parse_int(nil), do: 100
-  defp parse_int(value) do
+  defp parse_int(nil, default), do: default
+  defp parse_int(value, default) do
     case Integer.parse(value) do
       {num, _} -> num
-      _ -> 100
+      _ -> default
     end
   end
 

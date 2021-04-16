@@ -23,7 +23,7 @@ public class HashController {
     private final HashService service;
 
     @GetMapping()
-    public Mono<ResponseEntity<Object>> sha256(@RequestParam(defaultValue = "100") Long delay,
+    public Mono<ResponseEntity<Object>> sha256(@RequestParam(defaultValue = "0") Long delay,
                                                @RequestParam(defaultValue = "100") Integer percentage) {
         return Mono.defer(() -> Mono.just(DelayedTaskRunner.start(service::process, percentage, delay)))
                 .subscribeOn(Schedulers.boundedElastic())
