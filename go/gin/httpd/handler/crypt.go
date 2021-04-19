@@ -10,19 +10,16 @@ import (
 	"github.com/google/uuid"
 )
 
- func Crypt(c *gin.Context) {
-	if percentage, err := strconv.ParseInt(c.Param("percentage"), 10, 32) ; err == nil{
-		if delay, err := strconv.ParseInt(c.Param("delay"), 10, 32) ; err == nil{
-				plain := []byte(uuid.New().String())
-				times := utils.Loop(services.GenerateAndValidate(plain), percentage, delay)
-				c.JSON(http.StatusOK, gin.H{
-				"status": "Ok",
+func Crypt(c *gin.Context) {
+	if percentage, err := strconv.ParseInt(c.Param("percentage"), 10, 32); err == nil {
+		if delay, err := strconv.ParseInt(c.Param("delay"), 10, 32); err == nil {
+			plain := []byte(uuid.New().String())
+			times := utils.Loop(services.GenerateAndValidate(plain), percentage, delay)
+			c.JSON(http.StatusOK, gin.H{
+				"status":  "Ok",
 				"applied": true,
-				"times": times,
+				"times":   times,
 			})
-			}	
 		}
 	}
-
-
-
+}
