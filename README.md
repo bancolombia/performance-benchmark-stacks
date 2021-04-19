@@ -29,6 +29,7 @@ To run this project you need:
 * `aws-cli` and an AWS account
 * `nodejs` for reports
 * `terminal` or emulator with ssh for remote connections
+* `jq` is a lightweight and flexible command-line JSON processor.[Download here](https://stedolan.github.io/jq/download/).
 
 ### Installation
 
