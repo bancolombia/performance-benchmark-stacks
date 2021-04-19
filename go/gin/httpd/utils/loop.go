@@ -1,4 +1,4 @@
-package handler
+package utils
 
 import (
 	"math"
@@ -11,9 +11,12 @@ func Loop(process func(), percentage int64, delay int64) int{
 	count := 0
     if (IsInPercentage(percentage)) {
         endMillis := time.Now().Local().Add(time.Millisecond * time.Duration(delay))
-		for delay != 0 && time.Now().Local().Before(endMillis)  {
+		for  {
 			process()
             count ++
+            if delay == 0 || time.Now().Local().After(endMillis)  {
+                break
+            }
 		}
     }
     return count;

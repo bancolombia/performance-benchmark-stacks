@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"gin/httpd/utils"
 	"gin/services"
 	"net/http"
 	"strconv"
@@ -9,9 +10,9 @@ import (
 )
 
 func Hash(c *gin.Context) {
-	if percentage, err := strconv.ParseInt(c.Param("percentage"), 10, 32) ; err != nil{
-		if delay, err := strconv.ParseInt(c.Param("delay"), 10, 32) ; err != nil{
-			times := Loop(services.GenerateHash(),percentage, delay)
+	if percentage, err := strconv.ParseInt(c.Param("percentage"), 10, 32) ; err == nil{
+		if delay, err := strconv.ParseInt(c.Param("delay"), 10, 32) ; err == nil{
+			times := utils.Loop(services.GenerateHash(),percentage, delay)
 			c.JSON(http.StatusOK, gin.H{
 			"status": "Ok",
 			"applied": true,
