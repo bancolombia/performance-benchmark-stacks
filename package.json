@@ -1,0 +1,20 @@
+{
+  "name": "performance-benchmark-stacks",
+  "version": "1.0.0",
+  "description": "Repository for the design and construction of performance tests on different stacks. ",
+  "main": "start.sh",
+  "scripts": {
+    "install": "npm --prefix reports/front install",
+    "start": "./start_all.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bancolombia/performance-benchmark-stacks.git"
+  },
+  "author": "Bancolombia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bancolombia/performance-benchmark-stacks/issues"
+  },
+  "homepage": "https://github.com/bancolombia/performance-benchmark-stacks#readme"
+}
