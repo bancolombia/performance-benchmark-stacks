@@ -11,8 +11,8 @@ import (
 )
 
 func Crypt(c *gin.Context) {
-	if percentage, err := strconv.ParseInt(c.Param("percentage"), 10, 32); err == nil {
-		if delay, err := strconv.ParseInt(c.Param("delay"), 10, 32); err == nil {
+	if percentage, err := strconv.ParseInt(c.DefaultQuery("percentage", "100"), 10, 32); err == nil {
+		if delay, err := strconv.ParseInt(c.DefaultQuery("delay", "0"), 10, 32); err == nil {
 			plain := []byte(uuid.New().String())
 			times := utils.Loop(services.GenerateAndValidate(plain), percentage, delay)
 			c.JSON(http.StatusOK, gin.H{
