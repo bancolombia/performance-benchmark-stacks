@@ -14,8 +14,10 @@ func Hash(c *gin.Context) {
 		if delay, err := strconv.ParseInt(c.Param("delay"), 10, 32) ; err == nil{
 			times := Loop(Process(),percentage, delay)
 			c.JSON(http.StatusOK, gin.H{
-			"percentage": percentage,
-			"delay": delay,
+				"percentage": percentage,
+                      "delay": delay,
+			"status": "Ok",
+			"applied": true,
 			"times": times,
 		})
 		}
