@@ -1,6 +1,6 @@
 #!/bin/bash
 
-stacks=("nodejs/express" "nodejs/nestjs" "java/spring-boot-tomcat" "java/spring-boot-webflux" "elixir/plug-cowboy")
+stacks=("nodejs/express" "nodejs/nestjs" "java/spring-boot-tomcat" "java/spring-boot-webflux" "elixir/plug-cowboy", "go/gin")
 #stacks=("java/spring-boot-tomcat")
 scenarios=("health-check" "cipher-bcrypt" "hash-sha256")
 
