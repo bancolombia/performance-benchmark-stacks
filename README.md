@@ -10,6 +10,16 @@ The project objective is to allow executing repeatable performance tests in diff
 mainly designed to be executed on an AWS account, however the stacks scenarios are developed and designed to run in
 Docker.
 
+| Stack | Health Check | Hash SHA 256| Cipher Bcrypt|
+|--|--|--|--|
+|java (spring boot mvc)|✅|✅|✅|
+|java (spring boot webflux)|✅|✅|✅|
+|elixir (plug cowboy)|✅|✅|✅|
+|NodeJs (Express)|✅|✅|✅|
+|NodeJs (NestJs)|✅|✅|✅|
+|Go (Gin)|✅|--|--|
+|Rust (Actix)|✅|--|--|
+
 ## Getting Started
 
 ### Prerequisites
@@ -29,8 +39,7 @@ To run this project you need:
    ```
 2. Install NPM packages for reports
    ```sh
-   cd reports/front
-   npm install
+   npm run install
    ```
 3. Build your configuration in `config.json`
    ```sh
