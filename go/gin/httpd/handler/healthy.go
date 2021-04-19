@@ -1,9 +1,13 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
 
 func Healthy(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"message": "Ok",
+	c.JSON(http.StatusOK, gin.H{
+		"status": "UP",
 	})
 }
