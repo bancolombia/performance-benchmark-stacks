@@ -10,15 +10,15 @@ The project objective is to allow executing repeatable performance tests in diff
 mainly designed to be executed on an AWS account, however the stacks scenarios are developed and designed to run in
 Docker.
 
-| Stack | Health Check | Hash SHA 256| Cipher Bcrypt|
-|--|--|--|--|
-|java (spring boot mvc)|✅|✅|✅|
-|java (spring boot webflux)|✅|✅|✅|
-|elixir (plug cowboy)|✅|✅|✅|
-|NodeJs (Express)|✅|✅|✅|
-|NodeJs (NestJs)|✅|✅|✅|
-|Go (Gin)|✅|--|--|
-|Rust (Actix)|✅|--|--|
+| Stack                      | Health Check | Hash SHA 256 | Cipher Bcrypt |
+| -------------------------- | ------------ | ------------ | ------------- |
+| java (spring boot mvc)     | ✅           | ✅           | ✅            |
+| java (spring boot webflux) | ✅           | ✅           | ✅            |
+| elixir (plug cowboy)       | ✅           | ✅           | ✅            |
+| NodeJs (Express)           | ✅           | ✅           | ✅            |
+| NodeJs (NestJs)            | ✅           | ✅           | ✅            |
+| Go (Gin)                   | ✅           | ✅           | ✅            |
+| Rust (Actix)               | ✅           | --           | --            |
 
 ## Getting Started
 
@@ -26,10 +26,10 @@ Docker.
 
 To run this project you need:
 
-* `aws-cli` and an AWS account
-* `nodejs` for reports
-* `terminal` or emulator with ssh for remote connections
-* `jq` is a lightweight and flexible command-line JSON processor.[Download here](https://stedolan.github.io/jq/download/).
+- `aws-cli` and an AWS account
+- `nodejs` for reports
+- `terminal` or emulator with ssh for remote connections
+- `jq` is a lightweight and flexible command-line JSON processor.[Download here](https://stedolan.github.io/jq/download/).
 
 ### Installation
 
@@ -49,7 +49,7 @@ To run this project you need:
    ```json
    {
     "instance": "t2.micro", # AWS instance type
-    "key": "reactive", # Instance private key name, if name is `reactive` the key file should be in root of this project with `reactive.pem` name. 
+    "key": "reactive", # Instance private key name, if name is `reactive` the key file should be in root of this project with `reactive.pem` name.
     "securityGroup": "sg-00000000000000000", # Security group for your instances, should allow requests to the 8080 port
     "subnet": "subnet-00000000000000000",
     "amiUser": "ubuntu", # default user of the ami
@@ -93,21 +93,12 @@ Please see [the contribution guide](https://github.com/bancolombia/performance-b
 Distributed under the MIT License. See `LICENSE` for more information.
 
 [contributors-shield]: https://img.shields.io/github/contributors/bancolombia/performance-benchmark-stacks.svg?style=for-the-badge
-
 [contributors-url]: https://github.com/bancolombia/performance-benchmark-stacks/graphs/contributors
-
 [forks-shield]: https://img.shields.io/github/forks/bancolombia/performance-benchmark-stacks.svg?style=for-the-badge
-
 [forks-url]: https://github.com/bancolombia/performance-benchmark-stacks/network/members
-
 [stars-shield]: https://img.shields.io/github/stars/bancolombia/performance-benchmark-stacks.svg?style=for-the-badge
-
 [stars-url]: https://github.com/bancolombia/performance-benchmark-stacks/stargazers
-
 [issues-shield]: https://img.shields.io/github/issues/bancolombia/performance-benchmark-stacks.svg?style=for-the-badge
-
 [issues-url]: https://github.com/bancolombia/performance-benchmark-stacks/issues
-
 [license-shield]: https://img.shields.io/github/license/bancolombia/performance-benchmark-stacks.svg?style=for-the-badge
-
 [license-url]: https://github.com/bancolombia/performance-benchmark-stacks/blob/main/LICENSE
