@@ -45,4 +45,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
-src/assets/results.json
+src/assets/*.json
