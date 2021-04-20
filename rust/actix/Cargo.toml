@@ -1,0 +1,17 @@
+[package]
+name = "actix"
+version = "0.1.0"
+authors = ["Juan Carlos Galvis <jcgalvis@bancolombia.com.co>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web = "3"
+rand = "0.8"
+sha2 = "0.9"
+log = "0.4"
+uuid = { version = "0.8", features = ["v4"] }
+serde = "1.0"
+bcrypt = "0.8"
+hex = "0.4.3"

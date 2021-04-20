@@ -12,13 +12,13 @@ Docker.
 
 | Stack                      | Health Check | Hash SHA 256 | Cipher Bcrypt |
 | -------------------------- | ------------ | ------------ | ------------- |
-| java (spring boot mvc)     | ✅           | ✅           | ✅            |
-| java (spring boot webflux) | ✅           | ✅           | ✅            |
-| elixir (plug cowboy)       | ✅           | ✅           | ✅            |
+| Elixir (Plug Cowboy)       | ✅           | ✅           | ✅            |
+| Go (Gin)                   | ✅           | ✅           | ✅            |
+| Java (Spring Boot MVC)     | ✅           | ✅           | ✅            |
+| Java (Spring Boot Webflux) | ✅           | ✅           | ✅            |
 | NodeJs (Express)           | ✅           | ✅           | ✅            |
 | NodeJs (NestJs)            | ✅           | ✅           | ✅            |
-| Go (Gin)                   | ✅           | ✅           | ✅            |
-| Rust (Actix)               | ✅           | --           | --            |
+| Rust (Actix)               | ✅           | ✅           | ✅            |
 
 ## Getting Started
 
