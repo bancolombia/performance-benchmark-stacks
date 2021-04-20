@@ -18,7 +18,7 @@ Docker.
 |NodeJs (Express)|✅|✅|✅|
 |NodeJs (NestJs)|✅|✅|✅|
 |Go (Gin)|✅|--|--|
-|Rust (Actix)|✅|--|--|
+|Rust (Actix)|✅|✅|✅|
 
 ## Getting Started
 
