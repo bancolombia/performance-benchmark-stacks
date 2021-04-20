@@ -8,9 +8,9 @@ config :perf_analizer,
          body: nil
        },
        execution: %{
-         steps: 15,
-         increment: 10,
-         duration: 10000,
+         steps: 50,
+         increment: 1,
+         duration: 5000,
          constant_load: false
        },
        distributed: :master
