@@ -5,6 +5,7 @@
   "main": "start.sh",
   "scripts": {
     "install": "npm --prefix reports/front install",
+    "clean": "./cleanup.sh",
     "start": "./start_all.sh"
   },
   "repository": {
