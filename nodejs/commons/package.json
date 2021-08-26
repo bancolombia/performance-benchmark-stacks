@@ -1,6 +1,6 @@
 {
   "name": "commons",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Common modules for nodejs stacks",
   "main": "index.js",
   "scripts": {

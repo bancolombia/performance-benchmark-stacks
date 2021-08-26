@@ -22,10 +22,7 @@ test('should delay a task with Observable', done => {
     const delay = 1000;
     let expected = (new Date()).getTime() + delay;
     // Act
-
-    const fn = async () => {
-        return Promise.resolve(10 / 50);
-    };
+    const fn = async () => Promise.resolve(10 / 50);
 
     startReactive(fn, 100, delay)
         .subscribe(times => {
@@ -34,5 +31,5 @@ test('should delay a task with Observable', done => {
             expect(times).toBeGreaterThan(0);
             done();
         });
-        
+
 }, 5000);

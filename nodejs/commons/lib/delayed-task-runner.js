@@ -25,13 +25,7 @@ const startReactive = (fn, percentage, delay) => {
     if (isInPercentage(percentage)) {
         return query$(count, fn)
             .pipe(
-                expand(result => {
-                    const current = new Date().getTime();
-                    if (delay !== 0 && (current <= endMillis)) {
-                        return query$(result, fn);
-                    }
-                    return EMPTY;
-                }),
+                expand(result => (delay !== 0 && (new Date().getTime() <= endMillis)) ? query$(result, fn) : EMPTY),
                 takeLast(1)
             )
     }
