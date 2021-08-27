@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ResultsService } from '../../services/results.service';
+import {Component, OnInit} from '@angular/core';
+import {ResultsService} from '../../services/results.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,8 @@ export class AppComponent implements OnInit {
   charts: any;
   modeText = 'Enable Light Mode!';
 
-  constructor(private dataService: ResultsService) {}
+  constructor(private dataService: ResultsService) {
+  }
 
   ngOnInit(): void {
     this.dataService.loadResults().subscribe((data) => this.buildCharts(data));

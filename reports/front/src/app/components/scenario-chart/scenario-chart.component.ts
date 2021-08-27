@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import {AfterViewInit, Component, Input} from '@angular/core';
 import * as Chart from 'chart.js';
 import 'chartjs-plugin-colorschemes/src/plugins/plugin.colorschemes';
 
@@ -23,7 +23,8 @@ export class ScenarioChartComponent implements AfterViewInit {
   canvas: any;
   ctx: any;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngAfterViewInit(): void {
     this.canvas = document.getElementById(`${this.scenario}-${this.metric}`);
@@ -53,15 +54,31 @@ export class ScenarioChartComponent implements AfterViewInit {
   }
 
   private buildChartData(results): any {
-    const data: any = { datasets: [] };
+    const data: any = {datasets: []};
     const stacks = Object.keys(results);
     data.labels = results[stacks[0]].concurrency;
     stacks.forEach((stack) => {
-      const dataset: any = { fill: false };
+      const dataset: any = {fill: false};
       dataset.data = results[stack][this.metric];
       dataset.label = stack;
       data.datasets.push(dataset);
     });
     return data;
+  }
+
+  saveImage(): void {
+    let canvas: any = document.getElementById(`${this.scenario}-${this.metric}`);
+    canvas.toBlob((blob) => {
+        // To download directly on browser default 'downloads' location
+        const link = document.createElement('a');
+        link.download = `${this.scenario}-${this.metric}.png`;
+        link.href = URL.createObjectURL(blob);
+        link.click();
+
+        // To save manually somewhere in file explorer
+        const wb: any = window;
+        wb.saveAs(blob, link.download);
+
+      }, 'image/png');
   }
 }
