@@ -1,4 +1,6 @@
-const {isInPercentage} = require('./percentage');
+const { isInPercentage } = require('./percentage');
+let { Observable, defer, of, EMPTY } = require('rxjs');
+let { takeLast, expand } = require('rxjs/operators');
 
 async function start(fn, percentage, delay) {
     let count = 0;
@@ -12,4 +14,23 @@ async function start(fn, percentage, delay) {
     return count;
 }
 
-module.exports = {start};
+const query$ = (count, fn) => defer(async () => {
+    await fn();
+    return count + 1
+});
+
+const startReactive = (fn, percentage, delay) => {
+    const endMillis = new Date().getTime() + delay;
+    let count = 0;
+    if (isInPercentage(percentage)) {
+        return query$(count, fn)
+            .pipe(
+                expand(result => (delay !== 0 && (new Date().getTime() <= endMillis)) ? query$(result, fn) : EMPTY),
+                takeLast(1)
+            )
+    }
+    return of(count)
+}
+
+
+module.exports = { start, startReactive };
