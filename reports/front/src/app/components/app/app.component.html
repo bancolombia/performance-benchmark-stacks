@@ -1,10 +1,6 @@
 <div>
-  <label class="bc-switch-container" tabindex="0" for="myOwnID"
-    ><input
-      type="checkbox"
-      id="myOwnID"
-      (change)="switchTheme($event.target.checked)"
-    />
+  <label class="bc-switch-container" tabindex="0" for="myOwnID">
+    <input type="checkbox" id="myOwnID" (change)="switchTheme($event.target.checked)"/>
     <div class="bc-switch">
       <div class="bc-switch-round"></div>
     </div>
@@ -14,6 +10,6 @@
 <div *ngFor="let scenario of scenarios">
   <app-scenario-report
     [scenario]="scenario"
-    [data]="scenarioData(scenario)"
-  ></app-scenario-report>
+    [data]="scenarioData(scenario)">
+  </app-scenario-report>
 </div>
