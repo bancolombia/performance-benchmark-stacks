@@ -17,6 +17,7 @@ Docker.
 | Java (Spring Boot MVC)                     | ✅           | ✅           | ✅            |
 | Java (Spring Boot Webflux)                 | ✅           | ✅           | ✅            |
 | NodeJs (Express)                           | ✅           | ✅           | ✅            |
+| NodeJs (Fastify)                           | ✅           | ✅           | ✅            |
 | NodeJs (NestJs)                            | ✅           | ✅           | ✅            |
 | NodeJs (NestJs & Rxjs)                     | ✅           | ✅           | ✅            |
 | NodeJs (NestJs & Fastify Adapter & Rxjs)   | ✅           | ✅           | ✅            |
