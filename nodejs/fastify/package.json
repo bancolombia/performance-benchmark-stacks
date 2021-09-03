@@ -1,0 +1,31 @@
+{
+  "name": "nodejs-fastify",
+  "version": "1.0.0",
+  "description": "Benchmark scenarios implemented in nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bancolombia/performance-benchmark-stacks.git"
+  },
+  "keywords": [
+    "benchmark",
+    "stack",
+    "nodejs",
+    "bancolombia"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bancolombia/performance-benchmark-stacks/issues"
+  },
+  "homepage": "https://github.com/bancolombia/performance-benchmark-stacks#readme",
+  "dependencies": {
+    "fastify": "^3.20.2",
+    "utils": "file:../commons",
+    "uuid": "^8.3.2"
+  }
+}
