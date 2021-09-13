@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ResultsService} from '../../services/results.service';
+import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
+import { ResultsService } from '../../services/results.service';
+declare var BcTabsGroupBehavior: any;
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,12 @@ export class AppComponent implements OnInit {
   constructor(private dataService: ResultsService) {
   }
 
+  showRawJavascript(): void {
+    const tabs = new BcTabsGroupBehavior();
+    tabs.setElement(document.getElementById("tabs"));
+    tabs.setUp();
+  }
+
   ngOnInit(): void {
     this.dataService.loadResults().subscribe((data) => this.buildCharts(data));
   }
@@ -26,6 +33,9 @@ export class AppComponent implements OnInit {
   buildCharts(data): void {
     this.charts = data;
     this.scenarios = Object.keys(data);
+    setTimeout(() => {
+      this.showRawJavascript();
+    }, 1000);
   }
 
   switchTheme(checked) {
