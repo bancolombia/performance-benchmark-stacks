@@ -37,25 +37,4 @@ export class AppComponent implements OnInit {
       this.showRawJavascript();
     }, 1000);
   }
-
-  switchTheme(checked) {
-    var link = document.createElement('link');
-    if (checked) {
-      this.modeText = 'Disabled Dark Mode!';
-      document.documentElement.setAttribute('data-theme', 'dark');
-      link.href =
-        'https://galatea-dev.apps.ambientesbc.com/2.0.0/bds-black.min.css';
-    } else {
-      this.modeText = 'Enable Dark Mode!';
-
-      document.documentElement.setAttribute('data-theme', 'light');
-
-      link.href = 'https://galatea-dev.apps.ambientesbc.com/2.0.0/bds.min.css';
-    }
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.media = 'screen,print';
-    document.getElementsByTagName('head')[0].lastChild.remove();
-    document.getElementsByTagName('head')[0].appendChild(link);
-  }
 }
