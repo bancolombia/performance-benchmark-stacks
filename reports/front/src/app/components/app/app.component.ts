@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ResultsService} from '../../services/results.service';
+import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
+import { ResultsService } from '../../services/results.service';
+declare var BcTabsGroupBehavior: any;
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,12 @@ export class AppComponent implements OnInit {
   constructor(private dataService: ResultsService) {
   }
 
+  showRawJavascript(): void {
+    const tabs = new BcTabsGroupBehavior();
+    tabs.setElement(document.getElementById("tabs"));
+    tabs.setUp();
+  }
+
   ngOnInit(): void {
     this.dataService.loadResults().subscribe((data) => this.buildCharts(data));
   }
@@ -26,26 +33,8 @@ export class AppComponent implements OnInit {
   buildCharts(data): void {
     this.charts = data;
     this.scenarios = Object.keys(data);
-  }
-
-  switchTheme(checked) {
-    var link = document.createElement('link');
-    if (checked) {
-      this.modeText = 'Disabled Dark Mode!';
-      document.documentElement.setAttribute('data-theme', 'dark');
-      link.href =
-        'https://galatea-dev.apps.ambientesbc.com/2.0.0/bds-black.min.css';
-    } else {
-      this.modeText = 'Enable Dark Mode!';
-
-      document.documentElement.setAttribute('data-theme', 'light');
-
-      link.href = 'https://galatea-dev.apps.ambientesbc.com/2.0.0/bds.min.css';
-    }
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.media = 'screen,print';
-    document.getElementsByTagName('head')[0].lastChild.remove();
-    document.getElementsByTagName('head')[0].appendChild(link);
+    setTimeout(() => {
+      this.showRawJavascript();
+    }, 1000);
   }
 }

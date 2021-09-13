@@ -16,6 +16,10 @@ export class ScenarioChartComponent implements AfterViewInit {
     '#00c389',
     '#9063cd',
     '#f5b6cd',
+    '#424242',
+    '#6d6d6d',
+    '#9c27b0',
+    '#651fff'
   ];
   @Input() scenario: string;
   @Input() metric: string;

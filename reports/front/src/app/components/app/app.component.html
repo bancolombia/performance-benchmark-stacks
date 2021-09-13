@@ -1,15 +1,29 @@
-<div>
-  <label class="bc-switch-container" tabindex="0" for="myOwnID">
-    <input type="checkbox" id="myOwnID" (change)="switchTheme($event.target.checked)"/>
-    <div class="bc-switch">
-      <div class="bc-switch-round"></div>
-    </div>
-    <span> {{ modeText }} </span>
-  </label>
+<div class="bc-header bc-fixed">
+  <div class="bc-header-brand">
+    <em aria-hidden="true" aria-label="Bancolombia" role="img" size="lg" class="bc-icon bc-lg ">
+      bancolombia-horizontal
+    </em>
+  </div>
 </div>
-<div *ngFor="let scenario of scenarios">
-  <app-scenario-report
-    [scenario]="scenario"
-    [data]="scenarioData(scenario)">
-  </app-scenario-report>
+<div class="content bc-content bc-container-solid">
+  <div id="tabs" class="bc-tabs-group" right="true" left="false">
+    <div class="bc-tab-header">
+      <div class="bc-tabs" justifycontent="flex-start" style="left: 0px; width: 550px;">
+        <div class="bc-tab" ng-class="{active: idx == 0}" *ngFor="let scenario of scenarios; let ixd = index">
+          <span> {{scenario}} </span>
+        </div>
+      </div>
+      <div class="arrow-buttons">
+        <div class="prev"><em aria-hidden="true" aria-label="prueba" class="bc-icon bc-sm" role="img">arrow2-left</em>
+        </div>
+        <div class="next"><em aria-hidden="true" aria-label="prueba" class="bc-icon bc-sm" role="img">arrow2-right</em>
+        </div>
+      </div>
+    </div>
+    <div class="bc-tab-body">
+      <div label="{{scenario}}" class="bc-tab-content" *ngFor="let scenario of scenarios">
+        <app-scenario-report [scenario]="scenario" [data]="scenarioData(scenario)"></app-scenario-report>
+      </div>
+    </div>
+  </div>
 </div>

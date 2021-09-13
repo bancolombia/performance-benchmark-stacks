@@ -1,4 +1,5 @@
 <h1>{{scenario}}</h1>
+<p>This scenarios have been executed on a c5.large ec2 instance.</p>
 <div *ngFor="let metric of metrics()">
   <app-scenario-chart [scenario]="scenario" [metric]="metric" [data]="data"></app-scenario-chart>
 </div>
