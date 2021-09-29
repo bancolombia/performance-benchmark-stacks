@@ -80,6 +80,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /prime/{top}:
+    get:
+      tags:
+        - processing
+      summary: Service that calculates the prime numbers until a top number.
+      operationId: primes
+      parameters:
+        - name: percentage
+          in: query
+          description: percentage of requests that should do processing, default 100
+        - name: delay
+          in: query
+          description: delay time to run the processing loop, default 0
+        - name: top
+          in: path
+          description: top number for calculating prime numbers
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoopStatus'
+        500:
+          description: Error response could be 4xx or 5xx status code
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Status:
