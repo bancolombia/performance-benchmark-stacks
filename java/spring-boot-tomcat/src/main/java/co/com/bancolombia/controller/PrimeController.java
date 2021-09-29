@@ -1,7 +1,6 @@
 package co.com.bancolombia.controller;
 
 import co.com.bancolombia.models.LoopStatus;
-import co.com.bancolombia.service.CryptService;
 import co.com.bancolombia.service.PrimeService;
 import co.com.bancolombia.utils.DelayedTaskRunner;
 import lombok.AllArgsConstructor;
