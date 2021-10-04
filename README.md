@@ -10,18 +10,18 @@ The project objective is to allow executing repeatable performance tests in diff
 mainly designed to be executed on an AWS account, however the stacks scenarios are developed and designed to run in
 Docker.
 
-| Stack                                      | Health Check | Hash SHA 256 | Cipher Bcrypt |
-| ------------------------------------------ | ------------ | ------------ | ------------- |
-| Elixir (Plug Cowboy)                       | ✅           | ✅           | ✅            |
-| Go (Gin)                                   | ✅           | ✅           | ✅            |
-| Java (Spring Boot MVC)                     | ✅           | ✅           | ✅            |
-| Java (Spring Boot Webflux)                 | ✅           | ✅           | ✅            |
-| NodeJs (Express)                           | ✅           | ✅           | ✅            |
-| NodeJs (Fastify)                           | ✅           | ✅           | ✅            |
-| NodeJs (NestJs)                            | ✅           | ✅           | ✅            |
-| NodeJs (NestJs & Rxjs)                     | ✅           | ✅           | ✅            |
-| NodeJs (NestJs & Fastify Adapter & Rxjs)   | ✅           | ✅           | ✅            |
-| Rust (Actix)                               | ✅           | ✅           | ✅            |
+| Stack                                    | Health Check | Hash SHA 256 | Cipher Bcrypt | SieveOfEratosthenes |
+| ---------------------------------------- | ------------ | ------------ | ------------- | ------------------- |
+| Elixir (Plug Cowboy)                     | ✅            | ✅            | ✅             | ✅                   |
+| Go (Gin)                                 | ✅            | ✅            | ✅             |                     |
+| Java (Spring Boot MVC)                   | ✅            | ✅            | ✅             | ✅                   |
+| Java (Spring Boot Webflux)               | ✅            | ✅            | ✅             | ✅                   |
+| NodeJs (Express)                         | ✅            | ✅            | ✅             | ✅                   |
+| NodeJs (Fastify)                         | ✅            | ✅            | ✅             | ✅                   |
+| NodeJs (NestJs)                          | ✅            | ✅            | ✅             | ✅                   |
+| NodeJs (NestJs & Rxjs)                   | ✅            | ✅            | ✅             |                     |
+| NodeJs (NestJs & Fastify Adapter & Rxjs) | ✅            | ✅            | ✅             |                     |
+| Rust (Actix)                             | ✅            | ✅            | ✅             |                     |
 
 ## Results
 
