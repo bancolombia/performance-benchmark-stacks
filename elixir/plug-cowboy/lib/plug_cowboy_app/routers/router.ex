@@ -2,6 +2,7 @@ defmodule PlugCowboyApp.Routers.StatusRouter do
   alias Controllers.StatusController
   alias Controllers.HashController
   alias Controllers.CryptController
+  alias Controllers.PrimeController
   use Plug.Router
 
   plug(:match)
@@ -20,6 +21,12 @@ defmodule PlugCowboyApp.Routers.StatusRouter do
   get "/crypt" do
     conn
     |> handle_loop_status(&CryptController.hash/2)
+  end
+
+  get "/prime/:top" do
+    top = parse_int(conn.path_params["top"], 100)
+    conn
+    |> handle_loop_status(fn (percentage, delay) -> PrimeController.primes(percentage, delay, top) end)
   end
 
   defp handle_loop_status(conn, fun) do
