@@ -8,7 +8,13 @@ defmodule BenchmarkHubAgent.MixProject do
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      metrics: false
+      metrics: false,
+      releases: [
+        agent: [
+          include_executables_for: [:unix],
+          applications: [runtime_tools: :permanent]
+        ],
+      ],
     ]
   end
 
