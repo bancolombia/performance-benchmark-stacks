@@ -1,5 +1,6 @@
 defmodule RemoteAgent do
   use GenServer
+  require Logger
 
   def start_link(args) do
     GenServer.start_link(RemoteAgent, args, name: RemoteAgent)
@@ -7,6 +8,7 @@ defmodule RemoteAgent do
 
   @impl true
   def init(_args) do
+    Logger.warn("Agent successfully started!", ansi_color: :green)
     {:ok, :name}
   end
 

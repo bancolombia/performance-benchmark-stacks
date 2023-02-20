@@ -1,13 +1,14 @@
 defmodule Commands do
   @moduledoc false
+  require Logger
 
   def run(cmd, args, cd \\ "#{System.get_env("HOME")}") do
     log = "Running '#{cmd} #{Enum.join(args, " ")}'"
-    Mix.shell().info([:green, log])
+    Logger.info(log)
 
     case System.cmd(cmd, args, cd: cd) do
       {output, code} ->
-        Mix.shell().info([:green, "Code: #{code}"])
+        Logger.info("Code: #{code}")
         {"#{log}\n#{output}", output, code}
     end
   end

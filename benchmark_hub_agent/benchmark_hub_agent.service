@@ -1,0 +1,18 @@
+[Unit]
+Description=BenchMarkHubAgent
+
+[Service]
+Type=simple
+User=username
+Group=groupname
+Restart=on-failure
+Environment=MIX_ENV=prod
+Environment=LANG=en_US.UTF-8
+
+WorkingDirectory=/home/ubuntu
+
+ExecStart=/home/ubuntu/performance-benchmark-stacks/benchmark_hub_agent/_build/prod/rel/agent/bin/agent start
+ExecStop=/home/ubuntu/performance-benchmark-stacks/benchmark_hub_agent/_build/prod/rel/agent/bin/agent stop
+
+[Install]
+WantedBy=multi-user.target
