@@ -10,6 +10,7 @@ Environment=MIX_ENV=prod
 Environment=LANG=en_US.UTF-8
 Environment=RELEASE_COOKIE=changeit
 Environment=RELEASE_NODE=agent@changehost
+Environment=RELEASE_DISTRIBUTION=name
 
 WorkingDirectory=/home/ubuntu
 
