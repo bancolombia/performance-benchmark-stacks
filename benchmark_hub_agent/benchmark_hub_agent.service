@@ -11,6 +11,7 @@ Environment=LANG=en_US.UTF-8
 Environment=RELEASE_COOKIE=changeit
 Environment=RELEASE_NODE=agent@changehost
 Environment=RELEASE_DISTRIBUTION=name
+Environment=HOME=/home/ubuntu
 
 WorkingDirectory=/home/ubuntu
 
