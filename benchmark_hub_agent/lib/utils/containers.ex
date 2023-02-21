@@ -3,7 +3,7 @@ defmodule Containers do
   @moduledoc false
   @base_dir "#{System.get_env("HOME")}/performance-benchmark-stacks/stacks/"
   @config_dir "#{System.get_env("HOME")}/config/"
-  @docker "podman"
+  @tool Application.compile_env(:benchmark_hub_agent, :container_cli)
 
   def start_stack(stack, env) do
     with [language, _framework] <- String.split(stack, "/"),
@@ -23,12 +23,12 @@ defmodule Containers do
   end
 
   def start_performance(image) do
-    run(@docker, ["run", "-v", "#{@config_dir}:/app/config", image])
+    run(@tool, ["run", "-v", "#{@config_dir}:/app/config", image])
     |> normalize()
   end
 
   defp check_running_docker() do
-    case run(@docker, ["ps", "-q"]) do
+    case run(@tool, ["ps", "-q"]) do
       {log, running, 0} ->
         ids =
           String.split(running, "\n")
@@ -42,17 +42,17 @@ defmodule Containers do
   end
 
   defp stop_docker([]), do: {"", "", 0}
-  defp stop_docker(running), do: run(@docker, ["stop"] ++ running)
+  defp stop_docker(running), do: run(@tool, ["stop"] ++ running)
 
   defp delete_docker() do
-    case run(@docker, ["rm", "stack"]) do
+    case run(@tool, ["rm", "stack"]) do
       {log, out, 1} -> {log, out, 0}
       other -> other
     end
   end
 
   defp build_docker(stack, language) do
-    run(@docker, [
+    run(@tool, [
       "build",
       "-t",
       "stack",
@@ -63,7 +63,7 @@ defmodule Containers do
   end
 
   defp start_docker(env),
-    do: run(@docker, ["run", "-d"] ++ env ++ ["--name", "stack", "-p", "8080:8080", "stack"])
+    do: run(@tool, ["run", "-d"] ++ env ++ ["--name", "stack", "-p", "8080:8080", "stack"])
 
-  defp restart_docker(), do: run(@docker, ["restart", "stack"])
+  defp restart_docker(), do: run(@tool, ["restart", "stack"])
 end
