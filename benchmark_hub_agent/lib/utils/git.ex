@@ -1,7 +1,7 @@
 defmodule Git do
   import Commands
   @moduledoc false
-  @path "#{System.get_env("HOME")}/performance-benchmark-stacks"
+  @path "#{Application.compile_env(:benchmark_hub_agent, :home)}/performance-benchmark-stacks"
 
   def clone(url, branch) do
     if File.exists?(@path) do

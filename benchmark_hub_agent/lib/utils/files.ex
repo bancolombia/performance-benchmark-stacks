@@ -1,6 +1,6 @@
 defmodule Files do
   @moduledoc false
-  @path "#{System.get_env("HOME")}/config"
+  @path "#{Application.compile_env(:benchmark_hub_agent, :home)}/config"
 
   def write_scenario(scenario) do
     with :ok <- File.mkdir_p(@path),

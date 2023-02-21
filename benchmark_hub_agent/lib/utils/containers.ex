@@ -1,8 +1,8 @@
 defmodule Containers do
   import Commands
   @moduledoc false
-  @base_dir "#{System.get_env("HOME")}/performance-benchmark-stacks/stacks/"
-  @config_dir "#{System.get_env("HOME")}/config/"
+  @base_dir "#{Application.compile_env(:benchmark_hub_agent, :home)}/performance-benchmark-stacks/stacks"
+  @config_dir "#{Application.compile_env(:benchmark_hub_agent, :home)}/config"
   @tool Application.compile_env(:benchmark_hub_agent, :container_cli)
 
   def start_stack(stack, env) do
@@ -23,7 +23,7 @@ defmodule Containers do
   end
 
   def start_performance(image) do
-    run(@tool, ["run", "-v", "#{@config_dir}:/app/config", image])
+    run(@tool, ["run", "-v", "#{@config_dir}/:/app/config", image])
     |> normalize()
   end
 
@@ -57,8 +57,8 @@ defmodule Containers do
       "-t",
       "stack",
       "-f",
-      "#{@base_dir}#{stack}/Dockerfile",
-      "#{@base_dir}#{language}"
+      "#{@base_dir}/#{stack}/Dockerfile",
+      "#{@base_dir}/#{language}"
     ])
   end
 

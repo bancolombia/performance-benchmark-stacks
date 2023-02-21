@@ -2,7 +2,7 @@ defmodule Commands do
   @moduledoc false
   require Logger
 
-  def run(cmd, args, cd \\ "#{System.get_env("HOME")}") do
+  def run(cmd, args, cd \\ "#{Application.get_env(:benchmark_hub_agent, :home)}") do
     log = "Running '#{cmd} #{Enum.join(args, " ")}'"
     Logger.info(log)
 
