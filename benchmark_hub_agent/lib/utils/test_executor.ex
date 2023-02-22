@@ -5,8 +5,10 @@ defmodule TestExecutor do
     output = Files.write_scenario(scenario)
 
     Task.Supervisor.async(AsyncTask.Supervisor, fn ->
-      case Containers.start_performance(image) do
-        {:ok, _log} -> Files.read_results() |> replier.()
+      with {:ok, log} <- Containers.start_performance(image),
+           {:ok, results} <- Files.read_results() do
+        replier.({:test_results, results})
+      else
         other -> replier.(other)
       end
     end)
