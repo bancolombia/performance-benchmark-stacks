@@ -1,6 +1,6 @@
 apply plugin: 'java-library'
 
-sourceCompatibility = '8'
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
@@ -8,14 +8,16 @@ repositories {
 
 dependencies {
     implementation 'commons-codec:commons-codec:1.15'
-    implementation 'org.springframework.security:spring-security-crypto:5.4.6'
+    implementation 'org.springframework.security:spring-security-crypto:6.0.2'
 
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
 
     testImplementation 'commons-logging:commons-logging:1.2'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
     testImplementation 'org.assertj:assertj-core:3.18.1'
 }
 
-test { useJUnitPlatform() }
+tasks.named('test') {
+    useJUnitPlatform()
+}

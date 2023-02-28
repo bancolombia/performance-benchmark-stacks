@@ -5,7 +5,7 @@ config :perf_analyzer,
        request: %{
          method: "GET",
          headers: [],
-         body: nil
+         body: ""
        },
        execution: %{
          steps: 50,
