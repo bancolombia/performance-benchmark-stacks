@@ -1,6 +1,6 @@
 import Config
 
-config :perf_analizer,
+config :perf_analyzer,
        url: "http://ip:8080/status",
        request: %{
          method: "GET",
@@ -13,7 +13,8 @@ config :perf_analizer,
          duration: 10000,
          constant_load: true
        },
-       distributed: :master
+       distributed: :master,
+       jmeter_report: false
 
 config :logger,
        level: :warn

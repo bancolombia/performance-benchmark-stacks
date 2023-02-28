@@ -23,7 +23,7 @@ defmodule Containers do
   end
 
   def start_performance(image) do
-    run(@tool, ["run", "-v", "#{@config_dir}/:/app/config", image])
+    run(@tool, ["run", "--rm", "-v", "#{@config_dir}/:/app/config", image])
     |> normalize()
   end
 
