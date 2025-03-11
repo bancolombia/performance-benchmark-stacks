@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/bancolombia/performance-benchmark-stacks#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.21.2",
     "utils": "file:../commons",
     "uuid": "^8.3.2"
   }
